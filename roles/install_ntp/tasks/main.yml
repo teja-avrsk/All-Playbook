@@ -1,0 +1,13 @@
+---
+- name: install ntp
+  yum:  name=ntp state=installed 
+  
+- name: start ntp service
+  service: name=ntpd state=started
+- name: coppy conf file
+  become: yes
+  copy: src=ntpd.conf dest=/etc/ntp.conf
+  notify: 
+    - start ntp
+- name: coppy template file
+  template: src=ntpd.conf.j2 dest=/tmp/ntp.conf

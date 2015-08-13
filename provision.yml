@@ -1,0 +1,6 @@
+---
+ - hosts: all
+   become: yes
+   roles:
+   - create_user
+   - install_ntp 
